@@ -22,6 +22,25 @@ let currentTime = hours + ":" + minutes;
 let currentConditions = document.querySelector("#current-conditions");
 currentConditions.innerHTML = `Current conditions (${currentDay} ${currentTime})`;
 
+//the following two functions are used to automatically update local temp and city
+function updateLocation(response) {
+  let cityHeading = document.querySelector(".chosen-city");
+  cityHeading.innerHTML = `${response.data.city}`;
+  let localTemp = document.querySelector("#temp-element");
+  localTemp.innerHTML = `${Math.round(response.data.temperature.current)}°C`;
+}
+
+function defineLocation(position) {
+  let lat = position.coords.latitude;
+  let lon = position.coords.longitude;
+  let units = "metric";
+  let apiKey = "9a42a03oda7b4ctf1fd41c136ea3644b";
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?lat=${lat}&lon=${lon}&key=${apiKey}&units=${units}`;
+  axios.get(apiUrl).then(updateLocation);
+}
+
+navigator.geolocation.getCurrentPosition(defineLocation);
+
 function showTemperature(response) {
   let temperature = Math.round(response.data.temperature.current);
   let temperatureElement = document.querySelector("#temp-element");
