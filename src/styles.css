@@ -23,9 +23,16 @@ h2 {
   max-width: 600px;
   padding: 20px;
   display: block;
-  margin: 40px auto;
+  margin: 40px auto 20px;
   border: solid 1px;
 }
+.github-link {
+  font-size: 14px;
+  max-width: 600px;
+  display: block;
+  margin: 0 auto 20px;
+}
+
 .current-weather {
   padding: 10px 20px;
 }
