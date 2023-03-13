@@ -3,11 +3,7 @@ form {
   margin: 0 auto;
   padding: 10px 20px;
 }
-h1 {
-  font-size: 16px;
-  font-weight: 400;
-  margin-bottom: 0;
-}
+
 h2 {
   font-size: 16px;
   font-weight: 600;
@@ -18,6 +14,11 @@ h2 {
 }
 .btn-primary {
   border-radius: 0;
+}
+.last-updated {
+  font-size: 13px;
+  font-weight: 300;
+  margin-top: 3px;
 }
 .weather-app {
   max-width: 600px;
@@ -36,13 +37,16 @@ h2 {
 .current-weather {
   padding: 10px 20px;
 }
-.current-temp {
-  border: solid 1px;
+#temp-element {
   border-radius: 50px;
-  font-size: 36px;
-  color: #006ec5;
+  font-size: 42px;
   border-color: black;
-  text-align: center;
+  text-align: right;
+}
+#metric-converter {
+  text-align: right;
+  font-size: 13px;
+  font-weight: 300;
 }
 .temp-text {
   position: relative;

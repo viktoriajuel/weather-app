@@ -19,8 +19,8 @@ if (minutes < 10) {
 }
 let currentTime = hours + ":" + minutes;
 
-let currentConditions = document.querySelector("#current-conditions");
-currentConditions.innerHTML = `Current conditions (${currentDay} ${currentTime})`;
+let currentConditions = document.querySelector(".last-updated");
+currentConditions.innerHTML = `Last updated: ${currentDay} ${currentTime}`;
 
 //the following two functions are used to automatically update local temp and city
 function updateLocation(response) {
