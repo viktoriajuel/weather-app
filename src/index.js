@@ -26,8 +26,12 @@ currentConditions.innerHTML = `Last updated: ${currentDay} ${currentTime}`;
 function updateLocation(response) {
   let cityHeading = document.querySelector(".chosen-city");
   cityHeading.innerHTML = `${response.data.city}`;
-  let localTemp = document.querySelector("#temp-element");
-  localTemp.innerHTML = `${Math.round(response.data.temperature.current)}°C`;
+  let localTemp = document.querySelector("#temperature");
+  localTemp.innerHTML = `${Math.round(response.data.temperature.current)}`;
+  let humidity = document.querySelector("#humidity");
+  humidity.innerHTML = `${Math.round(response.data.temperature.humidity)}`;
+  let wind = document.querySelector("#wind");
+  wind.innerHTML = `${Math.round(response.data.wind.speed)}`;
 }
 
 function defineLocation(position) {
@@ -43,8 +47,12 @@ navigator.geolocation.getCurrentPosition(defineLocation);
 
 function showTemperature(response) {
   let temperature = Math.round(response.data.temperature.current);
-  let temperatureElement = document.querySelector("#temp-element");
-  temperatureElement.innerHTML = `${temperature}°C`;
+  let temperatureElement = document.querySelector("#temperature");
+  temperatureElement.innerHTML = `${temperature}`;
+  let humidity = document.querySelector("#humidity");
+  humidity.innerHTML = `${Math.round(response.data.temperature.humidity)}`;
+  let wind = document.querySelector("#wind");
+  wind.innerHTML = `${Math.round(response.data.wind.speed)}`;
 }
 
 function updateCity(event) {
