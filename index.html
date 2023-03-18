@@ -29,11 +29,17 @@
         <div class="current-weather row">
           <div class="col-8">
             <div class="col-12 chosen-city">City</div>
-            <div class="col-12">Humidity: | Wind:</div>
+            <div class="col-12">
+              Humidity: <span id="humidity"></span>% | Wind:
+              <span id="wind"></span> m/h
+            </div>
             <div class="col-12 last-updated">Last updated:</div>
           </div>
           <div class="col-4">
-            <div id="temp-element">?°C</div>
+            <div id="temp-element">
+              <img src="" alt="Clear" id="icon" />
+              <span id="temperature"></span><span class="units"> °C</span>
+            </div>
             <div id="metric-converter">°C | °F</div>
           </div>
           <div class="col-12"><h2>Following 5 days</h2></div>
