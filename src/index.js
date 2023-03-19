@@ -27,6 +27,7 @@ function displayLocalWeather(response) {
   let localTemp = document.querySelector("#temperature");
   let humidity = document.querySelector("#humidity");
   let wind = document.querySelector("#wind");
+  let conditions = document.querySelector("#conditions");
   let icon = document.querySelector("#icon");
   let iconAltText = document.querySelector("#icon");
 
@@ -34,6 +35,7 @@ function displayLocalWeather(response) {
   localTemp.innerHTML = `${Math.round(response.data.temperature.current)}`;
   humidity.innerHTML = `${Math.round(response.data.temperature.humidity)}`;
   wind.innerHTML = `${Math.round(response.data.wind.speed)}`;
+  conditions.innerHTML = response.data.condition.description;
   icon.setAttribute("src", response.data.condition.icon_url);
   iconAltText.setAttribute("alt", response.data.condition.description);
 
@@ -57,6 +59,7 @@ function displaySearchWeather(response) {
   let cityHeading = document.querySelector(".city");
   let humidity = document.querySelector("#humidity");
   let wind = document.querySelector("#wind");
+  let conditions = document.querySelector("#conditions");
   let icon = document.querySelector("#icon");
   let iconAltText = document.querySelector("#icon");
   let temperature = Math.round(response.data.temperature.current);
@@ -65,6 +68,7 @@ function displaySearchWeather(response) {
   temperatureElement.innerHTML = `${temperature}`;
   humidity.innerHTML = `${Math.round(response.data.temperature.humidity)}`;
   wind.innerHTML = `${Math.round(response.data.wind.speed)}`;
+  conditions.innerHTML = response.data.condition.description;
   icon.setAttribute("src", response.data.condition.icon_url);
   iconAltText.setAttribute("alt", response.data.condition.description);
 
