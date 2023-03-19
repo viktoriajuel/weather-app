@@ -27,7 +27,7 @@
           <input type="submit" value="Search" class="btn btn-primary col-2" />
         </form>
         <div class="current-weather row">
-          <div class="col-8">
+          <div class="col-8 conditions-section">
             <div class="col-12 city">City</div>
             <div class="col-12">
               <ul>
@@ -35,9 +35,6 @@
                 <li>Humidity: <span id="humidity"></span>%</li>
                 <li>Wind: <span id="wind"></span> m/h</li>
               </ul>
-            </div>
-            <div class="col-12 last-updated">
-              Last updated: <span id="date"></span>
             </div>
           </div>
           <div class="col-4">
@@ -50,14 +47,21 @@
               <a href="#" id="fahrenheit-link">°F</a>
             </div>
           </div>
-          <!--
-          <div class="col-12"><h2>Following 5 days</h2></div>
-          <div class="col following-temp">-1°C</div>
-          <div class="col following-temp">2°C</div>
-          <div class="col following-temp">-1°C</div>
-          <div class="col following-temp">0°C</div>
-          <div class="col following-temp">1°C</div>
-         -->
+          <div class="row">
+            <div class="col forecast-day">Tomorrow:</div>
+            <div class="col forecast-day"></div>
+            <div class="col forecast-day"></div>
+            <div class="col forecast-day"></div>
+            <div class="col forecast-day"></div>
+          </div>
+          <div class="row">
+            <div class="col following-temp">test</div>
+            <div class="col following-temp"></div>
+            <div class="col following-temp"></div>
+            <div class="col following-temp"></div>
+            <div class="col following-temp"></div>
+          </div>
+          <div class="last-updated">Last updated: <span id="date"></span></div>
         </div>
       </span>
       <div class="github-link">

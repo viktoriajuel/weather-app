@@ -1,14 +1,12 @@
+body {
+  background: #eeeeee;
+}
 form {
   display: block;
   margin: 0 auto;
   padding: 10px 20px;
 }
 
-h2 {
-  font-size: 16px;
-  font-weight: 600;
-  padding: 30px 0 10px;
-}
 ul {
   margin: 0;
   padding: 0;
@@ -30,33 +28,47 @@ li:first-letter {
 
 a {
   text-decoration: none;
+  color: #38598b;
+  font-weight: 500;
 }
-
 .weather-app {
   max-width: 600px;
   padding: 20px;
   display: block;
   margin: 40px auto 20px;
-  border: solid 1px;
+  border: solid 0px;
+  border-radius: 15px;
+  background-color: #ffffff;
+  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.2);
 }
 .search-bar {
   border-radius: 0;
 }
 .btn-primary {
-  border-radius: 0;
+  border-radius: 2px;
+  background-color: #113f67;
+  border-style: none;
+}
+.btn-primary:hover {
+  border-radius: 2px;
+  background-color: #38598b;
 }
 .current-weather {
   padding: 10px 20px;
 }
+.conditions-section {
+  margin-bottom: 25px;
+}
 .last-updated {
-  font-size: 12px;
-  font-weight: 200;
-  margin-top: 6px;
+  font-size: 13px;
+  font-weight: 300;
+  margin-top: 25px;
 }
 #temp-element {
   font-size: 42px;
   text-align: right;
   font-weight: 500;
+  color: #142d4c;
 }
 #icon {
   margin-right: 10px;
@@ -70,17 +82,27 @@ a {
 }
 .city {
   font-size: 30px;
+  font-weight: 600;
+  color: #142d4c;
 }
 .following-temp {
-  border: solid 1px;
+  border: 0px;
   border-radius: 50px;
   border-color: black;
   font-size: 20px;
   line-height: 2.5;
-  color: #006ec5;
+  background-color: #ececec;
+  color: #142d4c;
   text-align: center;
   margin: 0 5px;
 }
+.forecast-day {
+  text-align: center;
+  font-size: 13px;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
 .github-link {
   font-size: 14px;
   max-width: 600px;
@@ -90,6 +112,7 @@ a {
 .active {
   color: rgb(33, 33, 33);
   cursor: default;
+  font-weight: 300;
 }
 
 .active:hover {
