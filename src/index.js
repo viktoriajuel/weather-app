@@ -1,27 +1,3 @@
-let now = new Date();
-
-let day = now.getDay();
-let days = [
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-];
-let currentDay = days[day];
-
-let hours = now.getHours();
-let minutes = now.getMinutes();
-if (minutes < 10) {
-  minutes = "0" + minutes;
-}
-let currentTime = hours + ":" + minutes;
-
-let currentConditions = document.querySelector(".last-updated");
-currentConditions.innerHTML = `Last updated: ${currentDay} ${currentTime}`;
-
 function formatDate(timestamp) {
   let date = new Date(timestamp);
   let hours = date.getHours();
@@ -45,21 +21,20 @@ function formatDate(timestamp) {
 
   return `${day} ${hours}:${minutes}`;
 }
-//the following two functions are used to automatically update local temp and city
-function updateLocation(response) {
-  let cityHeading = document.querySelector(".chosen-city");
-  cityHeading.innerHTML = `${response.data.city}`;
+
+function displayLocalWeather(response) {
+  let cityHeading = document.querySelector(".city");
   let localTemp = document.querySelector("#temperature");
-  localTemp.innerHTML = `${Math.round(response.data.temperature.current)}`;
   let humidity = document.querySelector("#humidity");
-  humidity.innerHTML = `${Math.round(response.data.temperature.humidity)}`;
   let wind = document.querySelector("#wind");
-  wind.innerHTML = `${Math.round(response.data.wind.speed)}`;
-
   let icon = document.querySelector("#icon");
-  icon.setAttribute("src", response.data.condition.icon_url);
-
   let iconAltText = document.querySelector("#icon");
+
+  cityHeading.innerHTML = `${response.data.city}`;
+  localTemp.innerHTML = `${Math.round(response.data.temperature.current)}`;
+  humidity.innerHTML = `${Math.round(response.data.temperature.humidity)}`;
+  wind.innerHTML = `${Math.round(response.data.wind.speed)}`;
+  icon.setAttribute("src", response.data.condition.icon_url);
   iconAltText.setAttribute("alt", response.data.condition.description);
 
   //let date = document.querySelector("#date");
@@ -72,23 +47,25 @@ function defineLocation(position) {
   let units = "metric";
   let apiKey = "9a42a03oda7b4ctf1fd41c136ea3644b";
   let apiUrl = `https://api.shecodes.io/weather/v1/current?lat=${lat}&lon=${lon}&key=${apiKey}&units=${units}`;
-  axios.get(apiUrl).then(updateLocation);
+  axios.get(apiUrl).then(displayLocalWeather);
 }
 
-navigator.geolocation.getCurrentPosition(defineLocation);
-
-function showTemperature(response) {
-  let temperature = Math.round(response.data.temperature.current);
+function displayWeather(response) {
+  let searchBar = document.querySelector("#search-bar");
   let temperatureElement = document.querySelector("#temperature");
-  temperatureElement.innerHTML = `${temperature}`;
+  let city = searchBar.value;
+  let cityHeading = document.querySelector(".city");
   let humidity = document.querySelector("#humidity");
-  humidity.innerHTML = `${Math.round(response.data.temperature.humidity)}`;
   let wind = document.querySelector("#wind");
-  wind.innerHTML = `${Math.round(response.data.wind.speed)}`;
   let icon = document.querySelector("#icon");
-  icon.setAttribute("src", response.data.condition.icon_url);
-
   let iconAltText = document.querySelector("#icon");
+  let temperature = Math.round(response.data.temperature.current);
+
+  cityHeading.innerHTML = `${city}`;
+  temperatureElement.innerHTML = `${temperature}`;
+  humidity.innerHTML = `${Math.round(response.data.temperature.humidity)}`;
+  wind.innerHTML = `${Math.round(response.data.wind.speed)}`;
+  icon.setAttribute("src", response.data.condition.icon_url);
   iconAltText.setAttribute("alt", response.data.condition.description);
 }
 
@@ -96,14 +73,38 @@ function updateCity(event) {
   event.preventDefault();
   let searchBar = document.querySelector("#search-bar");
   let city = searchBar.value;
-  let cityHeading = document.querySelector(".chosen-city");
-  cityHeading.innerHTML = `${city}`;
   let apiKey = "9a42a03oda7b4ctf1fd41c136ea3644b";
   let units = "metric";
   let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=${units}`;
 
-  axios.get(apiUrl).then(showTemperature);
+  axios.get(apiUrl).then(displayWeather);
 }
+
+navigator.geolocation.getCurrentPosition(defineLocation);
 
 let searchBar = document.querySelector("#search-form");
 searchBar.addEventListener("submit", updateCity);
+
+let now = new Date();
+
+let day = now.getDay();
+let days = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+];
+let currentDay = days[day];
+
+let hours = now.getHours();
+let minutes = now.getMinutes();
+if (minutes < 10) {
+  minutes = "0" + minutes;
+}
+let currentTime = hours + ":" + minutes;
+
+let currentConditions = document.querySelector(".last-updated");
+currentConditions.innerHTML = `Last updated: ${currentDay} ${currentTime}`;
