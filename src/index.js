@@ -55,8 +55,15 @@ function updateLocation(response) {
   humidity.innerHTML = `${Math.round(response.data.temperature.humidity)}`;
   let wind = document.querySelector("#wind");
   wind.innerHTML = `${Math.round(response.data.wind.speed)}`;
-  let date = document.querySelector("#date");
-  date.innerHTML = formatDate(response.data.time * 1000);
+
+  let icon = document.querySelector("#icon");
+  icon.setAttribute("src", response.data.condition.icon_url);
+
+  let iconAltText = document.querySelector("#icon");
+  iconAltText.setAttribute("alt", response.data.condition.description);
+
+  //let date = document.querySelector("#date");
+  //date.innerHTML = formatDate(response.data.time * 1000);
 }
 
 function defineLocation(position) {
@@ -78,6 +85,11 @@ function showTemperature(response) {
   humidity.innerHTML = `${Math.round(response.data.temperature.humidity)}`;
   let wind = document.querySelector("#wind");
   wind.innerHTML = `${Math.round(response.data.wind.speed)}`;
+  let icon = document.querySelector("#icon");
+  icon.setAttribute("src", response.data.condition.icon_url);
+
+  let iconAltText = document.querySelector("#icon");
+  iconAltText.setAttribute("alt", response.data.condition.description);
 }
 
 function updateCity(event) {
