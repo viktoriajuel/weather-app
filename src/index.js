@@ -31,8 +31,10 @@ function displayLocalWeather(response) {
   let icon = document.querySelector("#icon");
   let iconAltText = document.querySelector("#icon");
 
+  celsiusTemperature = Math.round(response.data.temperature.current);
+
   cityHeading.innerHTML = `${response.data.city}`;
-  localTemp.innerHTML = `${Math.round(response.data.temperature.current)}`;
+  localTemp.innerHTML = `${celsiusTemperature}°C`;
   humidity.innerHTML = `${Math.round(response.data.temperature.humidity)}`;
   wind.innerHTML = `${Math.round(response.data.wind.speed)}`;
   conditions.innerHTML = response.data.condition.description;
@@ -62,10 +64,11 @@ function displaySearchWeather(response) {
   let conditions = document.querySelector("#conditions");
   let icon = document.querySelector("#icon");
   let iconAltText = document.querySelector("#icon");
-  let temperature = Math.round(response.data.temperature.current);
+
+  celsiusTemperature = Math.round(response.data.temperature.current);
 
   cityHeading.innerHTML = `${city}`;
-  temperatureElement.innerHTML = `${temperature}`;
+  temperatureElement.innerHTML = `${celsiusTemperature}°C`;
   humidity.innerHTML = `${Math.round(response.data.temperature.humidity)}`;
   wind.innerHTML = `${Math.round(response.data.wind.speed)}`;
   conditions.innerHTML = response.data.condition.description;
@@ -87,10 +90,36 @@ function updateCity(event) {
   axios.get(apiUrl).then(displaySearchWeather);
 }
 
+function displayFahrenheitTemperature(event) {
+  event.preventDefault();
+  let temperatureElement = document.querySelector("#temperature");
+
+  celsiusLink.classList.remove("active");
+  fahrenheitLink.classList.add("active");
+  let fahrenheiTemperature = (celsiusTemperature * 9) / 5 + 32;
+  temperatureElement.innerHTML = `${Math.round(fahrenheiTemperature)}°F`;
+}
+
+function displayCelsiusTemperature(event) {
+  event.preventDefault();
+  celsiusLink.classList.add("active");
+  fahrenheitLink.classList.remove("active");
+  let temperatureElement = document.querySelector("#temperature");
+  temperatureElement.innerHTML = `${Math.round(celsiusTemperature)}°C`;
+}
+
 navigator.geolocation.getCurrentPosition(defineLocation);
 
 let searchBar = document.querySelector("#search-form");
 searchBar.addEventListener("submit", updateCity);
+
+let celsiusTemperature = null;
+
+let fahrenheitLink = document.querySelector("#fahrenheit-link");
+fahrenheitLink.addEventListener("click", displayFahrenheitTemperature);
+
+let celsiusLink = document.querySelector("#celsius-link");
+celsiusLink.addEventListener("click", displayCelsiusTemperature);
 
 //alt under her må ryddes opp:
 let now = new Date();

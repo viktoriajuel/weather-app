@@ -27,6 +27,11 @@ li {
 li:first-letter {
   text-transform: capitalize;
 }
+
+a {
+  text-decoration: none;
+}
+
 .weather-app {
   max-width: 600px;
   padding: 20px;
@@ -81,4 +86,12 @@ li:first-letter {
   max-width: 600px;
   display: block;
   margin: 0 auto 20px;
+}
+.active {
+  color: rgb(33, 33, 33);
+  cursor: default;
+}
+
+.active:hover {
+  text-decoration: none;
 }
