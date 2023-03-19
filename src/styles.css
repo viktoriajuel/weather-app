@@ -37,10 +37,8 @@ h2 {
 }
 #icon {
   margin-right: 10px;
-  height: 50px;
-  width: 50px;
-  position: relative;
-  top: 7px;
+  height: 64px;
+  width: 64px;
 }
 #metric-converter {
   text-align: right;

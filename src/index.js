@@ -50,7 +50,7 @@ function defineLocation(position) {
   axios.get(apiUrl).then(displayLocalWeather);
 }
 
-function displayWeather(response) {
+function displaySearchWeather(response) {
   let searchBar = document.querySelector("#search-bar");
   let temperatureElement = document.querySelector("#temperature");
   let city = searchBar.value;
@@ -67,6 +67,9 @@ function displayWeather(response) {
   wind.innerHTML = `${Math.round(response.data.wind.speed)}`;
   icon.setAttribute("src", response.data.condition.icon_url);
   iconAltText.setAttribute("alt", response.data.condition.description);
+
+  //let date = document.querySelector("#date");
+  //date.innerHTML = formatDate(response.data.time * 1000);
 }
 
 function updateCity(event) {
@@ -77,7 +80,7 @@ function updateCity(event) {
   let units = "metric";
   let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=${units}`;
 
-  axios.get(apiUrl).then(displayWeather);
+  axios.get(apiUrl).then(displaySearchWeather);
 }
 
 navigator.geolocation.getCurrentPosition(defineLocation);
@@ -85,6 +88,7 @@ navigator.geolocation.getCurrentPosition(defineLocation);
 let searchBar = document.querySelector("#search-form");
 searchBar.addEventListener("submit", updateCity);
 
+//alt under her må ryddes opp:
 let now = new Date();
 
 let day = now.getDay();
