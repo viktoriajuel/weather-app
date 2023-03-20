@@ -73,12 +73,14 @@ function displayWeather(response) {
 
   cityHeading.innerHTML = `${city}`;
   temperatureElement.innerHTML = `${celsiusTemperature}°C`;
-  humidity.innerHTML = `${Math.round(response.data.temperature.humidity)}`;
-  wind.innerHTML = `${Math.round(response.data.wind.speed)}`;
+  humidity.innerHTML = `Humidity: ${Math.round(
+    response.data.temperature.humidity
+  )}%`;
+  wind.innerHTML = `Wind: ${Math.round(response.data.wind.speed)} m/h`;
   conditions.innerHTML = response.data.condition.description;
   icon.setAttribute("src", response.data.condition.icon_url);
   iconAltText.setAttribute("alt", response.data.condition.description);
-  date.innerHTML = formatDate(response.data.time * 1000);
+  date.innerHTML = `Last updated: ${formatDate(response.data.time * 1000)}`;
 }
 
 function definePosition(position) {
