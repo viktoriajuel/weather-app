@@ -22,23 +22,39 @@ function formatDate(timestamp) {
   return `${day} ${hours}:${minutes}`;
 }
 
-function displayForecast() {
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  return days[day];
+}
+
+function displayForecast(response) {
+  console.log(response.data);
+
+  let forecast = response.data.daily;
+
   let forecastElement = document.querySelector("#forecast");
 
   let forecastHTML = `<div class="row">`;
-  let days = ["Mon", "Tues", "Wed", "Thurs", "Fri"];
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 5) {
+      forecastHTML =
+        forecastHTML +
+        `
               <div class="col-2 forecast-element">
-                <div class="forecast-day">${day}</div>
+                <div class="forecast-day">${formatDay(forecastDay.time)}</div>
                 <div>
-                  <span class="forecast-temp-max">0° </span>
-                  <span class="forecast-temp-min">4° </span>
+                  <span class="forecast-temp-max">${Math.round(
+                    forecastDay.temperature.maximum
+                  )}° </span>
+                  <span class="forecast-temp-min">${Math.round(
+                    forecastDay.temperature.minimum
+                  )}° </span>
                 </div>
               </div>
           `;
+    }
   });
 
   forecastHTML = forecastHTML + `</div>`;
@@ -58,8 +74,6 @@ function displayWeather(response) {
   let iconAltText = document.querySelector("#icon");
   let date = document.querySelector("#date");
 
-  displayForecast();
-
   cityHeading.innerHTML = `${city}`;
   temperatureElement.innerHTML = `${celsiusTemperature}°C`;
   humidity.innerHTML = `${Math.round(response.data.temperature.humidity)}`;
@@ -76,8 +90,10 @@ function definePosition(position) {
   let units = "metric";
   let apiKey = "9a42a03oda7b4ctf1fd41c136ea3644b";
   let apiUrl = `https://api.shecodes.io/weather/v1/current?lat=${lat}&lon=${lon}&key=${apiKey}&units=${units}`;
+  let apiUrlForecast = `https://api.shecodes.io/weather/v1/forecast?lon=${lon}&lat=${lat}&key=${apiKey}&units=${units}`;
 
   axios.get(apiUrl).then(displayWeather);
+  axios.get(apiUrlForecast).then(displayForecast);
 }
 
 function updateCity(event) {
@@ -87,8 +103,10 @@ function updateCity(event) {
   let apiKey = "9a42a03oda7b4ctf1fd41c136ea3644b";
   let units = "metric";
   let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=${units}`;
+  let apiUrlForecast = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=${units}`;
 
   axios.get(apiUrl).then(displayWeather);
+  axios.get(apiUrlForecast).then(displayForecast);
 }
 
 function displayFahrenheitTemperature(event) {
