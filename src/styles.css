@@ -46,12 +46,12 @@ a {
 }
 .btn-primary {
   border-radius: 2px;
-  background-color: #113f67;
+  background-color: #142d4c;
   border-style: none;
 }
 .btn-primary:hover {
   border-radius: 2px;
-  background-color: #38598b;
+  background-color: #385170;
 }
 .current-weather {
   padding: 10px 20px;
@@ -85,22 +85,25 @@ a {
   font-weight: 600;
   color: #142d4c;
 }
-.following-temp {
-  border: 0px;
-  border-radius: 50px;
-  border-color: black;
-  font-size: 20px;
-  line-height: 2.5;
+.forecast-element {
   background-color: #ececec;
+  border: 0px;
+  border-radius: 20px;
   color: #142d4c;
   text-align: center;
   margin: 0 5px;
+  padding: 5px;
 }
 .forecast-day {
-  text-align: center;
   font-size: 13px;
-  font-weight: 500;
-  margin-bottom: 5px;
+  font-weight: 400;
+}
+.forecast-temp-min {
+  font-size: 18px;
+  opacity: 0.6;
+}
+.forecast-temp-max {
+  font-size: 18px;
 }
 
 .github-link {
